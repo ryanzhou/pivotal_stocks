@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="page-header">
+  <h1>Pivot Table Builder <small>Build your own or select from a number of presets</small></h1>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Custom Pivot Table</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ url_for('pivot_build') }}" method="post" class="form form-horizontal">
+          <div class="form-group">
+            <label for="filter_field" class="col-sm-2 control-label">Report Filter</label>
+            <div class="col-sm-4">
+              <select name="filter_field" class="form-control">
+                {% for column in data_columns %}
+                <option value="{{ column[1] }}">{{ column[0] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <select name="filter_predicate" class="form-control">
+                {% for predicate in filter_predicates %}
+                <option value="{{ predicate[1] }}">{{ predicate[0] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <input name="filter_value" class="form-control"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="column_label" class="col-sm-2 control-label">Column Label</label>
+            <div class="col-sm-4">
+              <select name="column_label" class="form-control">
+                {% for column in group_columns %}
+                <option value="{{ column[1] }}">{{ column[0] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="row_label" class="col-sm-2 control-label">Row Label</label>
+            <div class="col-sm-4">
+              <select name="row_label" class="form-control">
+                {% for column in group_columns %}
+                <option value="{{ column[1] }}">{{ column[0] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="aggregation_function" class="col-sm-2 control-label">Aggregation</label>
+            <div class="col-sm-4">
+              <select name="aggregation_function" class="form-control">
+                {% for function in aggregation_functions %}
+                <option value="{{ function[1] }}">{{ function[0] }} of</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <select name="aggregation_field" class="form-control">
+                {% for column in data_columns %}
+                <option value="{{ column[1] }}">{{ column[0] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" name="commit" class="btn btn-primary" value="Generate Pivot Table"></input>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <h3>Presets</h3>
+    <ul>
+      <li><a href={{ url_for('pivot_table', c_label="market_cap_bin", r_label="sector", a_function="avg", a_field="div_yield", f_field="any", f_predicate="any", f_value="any")}}>Average dividend yields by Sector and market cap</a></li>
+      <li><a href={{ url_for('pivot_table', c_label="market_cap_bin", r_label="sector", a_function="avg", a_field="pe_ratio", f_field="any", f_predicate="any", f_value="any")}}>Average P/E ratios by Sector and market cap</a></li>
+
+    </ul>
+  </div>
+</div>
+
+</div>
+{% endblock %}

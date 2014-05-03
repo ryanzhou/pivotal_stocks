@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="page-header">
+  <h1>Pivot Table <small>{{ human_name | capitalize }}</small></h1>
+  <pre class="light">{{ sql }}</pre>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <th></th>
+    {% for header in headers[1:] %}
+    <th class="right">{{ header }}</th>
+    {% endfor %}
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <th>{{ row[0] }}</th>
+      {% for header in headers[1:-1] %}
+      <td class="right">{{ row[header] | number }}</td>
+      {% endfor %}
+      <th class="right">{{ row[headers[-1]] | number }}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <th>All</th>
+    {% for header in headers[1:-1] %}
+    <th class="right">{{ footers[header] | number }}</th>
+    {% endfor %}
+    <th class="right">{{ footers["All"] | number }}</th>
+  </tfoot>
+</table>
+{% endblock %}

@@ -13,5 +13,9 @@ h2 {
 }
 
 .footer {
-  margin-top: 40px
+  margin-top: 40px;
+}
+
+.light {
+  opacity: 0.5;
 }

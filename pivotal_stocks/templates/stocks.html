@@ -16,13 +16,13 @@
   <tbody>
     {% for stock in stocks %}
     <tr>
-      <td>{{ stock['ticker' ]}}</td>
-      <td>{{ stock['company_name' ]}}</td>
-      <td>{{ stock['industry_group'] }}</td>
+      <td>{{ stock['asx_code']}}</td>
+      <td>{{ stock['company_name']}}</td>
+      <td>{{ stock['sector'] }}</td>
       <td class="right">{{ stock['market_cap'] | big_number }}</td>
       <td class="right">{{ stock['pe_ratio'] }}</td>
       <td class="right">{{ stock['div_yield'] | percent }}</td>
-      <td class="right">{{ stock['franking_percentage'] | percent }}</td>
+      <td class="right">{{ stock['franking'] | percent }}</td>
     </tr>
     {% endfor %}
   </tbody>
