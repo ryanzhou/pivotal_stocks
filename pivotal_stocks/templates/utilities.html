@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}Utilities - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Utilities <small>Database maintenance and seeding.</small></h1>
+</div>
+<p>This page contains some utilities to maintain the database of this application. Most of these actions are <strong>dangerous</strong>!</p>
+<h2>Initialize database</h2>
+<p>Use this function to load the schema into the built-in sqlite3 database.</p>
+<form action="{{ url_for('utilities_init_db')}}" method="post" class="form">
+  <div class="form-group">
+    <div class="checkbox">
+      <label for="confirmation">
+        <input type="checkbox" name="confirmation"> I understand that this action will delete all data in the database
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="submit" name="commit" class="btn btn-primary" value="Initialize Database"></input>
+  </div>
+</form>
+
+<h2>Data seeding</h2>
+<p>Use this function to import data from remote sources to the database.</p>
+<form action="{{ url_for('utilities_seed_data')}}" method="post" class="form">
+  <div class="form-group">
+    <h4>Available data sources:</h4>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="securities_list" checked> Securities List from AFR Smart Investor
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="industry_groups" checked> Industry Groups of Listed Companies from ASX
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="submit" name="commit" class="btn btn-primary" value="Import Data"></input>
+    <p class="help-block">This process may take a while. Please be patient.</p>
+  </div>
+</form>
+
+
+{% endblock %}

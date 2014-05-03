@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  {% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>{% block title %}Pivotal Stocks{% endblock %}</title>
+  {% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Pivotal Stocks</a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('stocks') }}">Stocks</a></li>
+        <li><a href="#">Pivot Table</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('utilities') }}"><span class="glyphicon glyphicon-cog"></span> Utilities</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="flashes">
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="alert alert-success">
+        <h4>Success!</h4>
+        <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+      </ul></div>
+      {% endif %}
+      {% endwith %}
+      {% if error %}
+      <div class="alert alert-danger"><h4>Error</h4>{{ error }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+  <div class="footer">
+    <div class="container">
+      <hr>
+      {% block footer %}
+      &copy; Copyright 2014 Ryan Zhou, Siyi Wu and Shuaiqi Li.
+      {% endblock %}
+    </div>
+  </div>
+</body>
+</html>

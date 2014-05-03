@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>Stocks <small>All ASX listed securities</small></h1>
+</div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>ASX Code</th>
+    <th>Company Name</th>
+    <th>Industry</th>
+    <th class="right">Market Cap ('000)</th>
+    <th class="right">P/E Ratio</th>
+    <th class="right">Dividend Yield</th>
+    <th class="right">Franking %</th>
+  </thead>
+  <tbody>
+    {% for stock in stocks %}
+    <tr>
+      <td>{{ stock['ticker' ]}}</td>
+      <td>{{ stock['company_name' ]}}</td>
+      <td>{{ stock['industry_group'] }}</td>
+      <td class="right">{{ stock['market_cap'] | big_number }}</td>
+      <td class="right">{{ stock['pe_ratio'] }}</td>
+      <td class="right">{{ stock['div_yield'] | percent }}</td>
+      <td class="right">{{ stock['franking_percentage'] | percent }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
