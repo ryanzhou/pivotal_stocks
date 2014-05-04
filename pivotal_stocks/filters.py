@@ -12,6 +12,8 @@ def big_number_filter(s):
 def number_filter(s):
     if s == None:
         return Markup('<span class="light">N/A</span>')
+    elif isinstance(s, int):
+        return "{:,.0f}".format(s)
     else:
         return "{:,.2f}".format(s)
 

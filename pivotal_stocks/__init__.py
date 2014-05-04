@@ -10,3 +10,4 @@ app.config.from_object('config')
 import pivotal_stocks.database
 import pivotal_stocks.views
 import pivotal_stocks.filters
+import pivotal_stocks.context_processors

@@ -81,8 +81,11 @@
   <div class="col-sm-4">
     <h3>Presets</h3>
     <ul>
-      <li><a href={{ url_for('pivot_table', c_label="market_cap_bin", r_label="sector", a_function="avg", a_field="div_yield", f_field="any", f_predicate="any", f_value="any")}}>Average dividend yields by Sector and market cap</a></li>
-      <li><a href={{ url_for('pivot_table', c_label="market_cap_bin", r_label="sector", a_function="avg", a_field="pe_ratio", f_field="any", f_predicate="any", f_value="any")}}>Average P/E ratios by Sector and market cap</a></li>
+      <li><a href={{ url_for('pivot_table', c_label="sector", r_label="franking_bin", a_function="avg", a_field="div_yield", f_field="asx200", f_predicate="=", f_value="t")}}>Average Dividend Yields by Franking and Sector in ASX200</a></li>
+      <li><a href={{ url_for('pivot_table', c_label="sector", r_label="market_cap_bin", a_function="avg", a_field="pe_ratio", f_field="any", f_predicate="any", f_value="any")}}>Average P/E ratios by Sector and market cap</a></li>
+      <li><a href={{ url_for('pivot_table', c_label="market_cap_bin", r_label="asx200", a_function="sum", a_field="market_cap", f_field="any", f_predicate="any", f_value="any")}}>ASX200 Market Cap vs the rest</a></li>
+      <li><a href={{ url_for('pivot_table', c_label="tsr_3y_bin", r_label="eps_bin", a_function="count", a_field="asx_code", f_field="asx200", f_predicate="=", f_value="t")}}>The relationship of Earnings and Total Shareholder Return in ASX200</a></li>
+      <li><a href={{ url_for('pivot_table', c_label="tsr_3y_bin", r_label="sector", a_function="count", a_field="asx_code", f_field="asx200", f_predicate="=", f_value="t")}}>Total Shareholder Return of various Sectors in ASX200</a></li>
 
     </ul>
   </div>

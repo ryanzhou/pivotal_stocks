@@ -120,5 +120,6 @@ def pivot_table(c_label, r_label, a_function, a_field, f_field, f_predicate, f_v
     cursor = pivot_table.query()
     headers = list(map(lambda x: x[0], cursor.description))
     rows = cursor.fetchall()
+    aggregation_values = [item for sublist in rows for item in list(sublist)[1:-1]]
     footers = pivot_table.footer_query()
-    return render_template("pivot/table.html", pivot_table=pivot_table, headers=headers, rows=rows, footers=footers)
+    return render_template("pivot/table.html", pivot_table=pivot_table, upper=max(aggregation_values), lower=min(x for x in aggregation_values if x is not None), headers=headers, rows=rows, footers=footers)

@@ -24,9 +24,14 @@ table.pivot {
   font-size: 11px;
 }
 
+table.table.pivot td{
+  border: 0px;
+}
+
 table.pivot th{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100px;
+  background-color: #DDD;
 }

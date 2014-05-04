@@ -7,7 +7,7 @@
   <a href="{{ url_for('pivot_table', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-th"></span> Switch Row/Column</a>
 </div>
 <hr>
-<table class="pivot table table-bordered">
+<table class="pivot table">
   <thead>
     <th></th>
     {% for header in headers[1:] %}
@@ -19,7 +19,7 @@
     <tr>
       <th>{{ row[0] | bin }}</th>
       {% for header in headers[1:-1] %}
-      <td class="right">{{ row[header] | number }}</td>
+      <td class="right" style="background-color: {{ cell_color(row[header], upper, lower) }}">{{ row[header] | number }}</td>
       {% endfor %}
       <th class="right">{{ row[headers[-1]] | number }}</th>
     </tr>
@@ -33,6 +33,19 @@
     <th class="right">{{ footers["All"] | number }}</th>
   </tfoot>
 </table>
-<h2>SQL Query</h2>
+<h4>Colour Legend</h4>
+<table class="pivot table">
+  <tr style="height: 10px">
+    {% for i in range(0,25) %}
+    <td style="background-color: {{ cell_color(i, 25, 0) }}"></td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td colspan="13">(Min) {{ lower | number }}</td>
+    <td colspan="13" class="right">{{ upper | number }} (Max)</td>
+  </tr>
+</table>
+
+<h4>SQL Query</h4>
 <pre class="light">{{ pivot_table.sql() }}</pre>
 {% endblock %}
