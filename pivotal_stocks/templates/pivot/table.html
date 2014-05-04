@@ -19,7 +19,7 @@
     <tr>
       <th>{{ row[0] | bin }}</th>
       {% for header in headers[1:-1] %}
-      <td class="right" style="background-color: {{ cell_color(row[header], upper, lower) }}">{{ row[header] | number }}</td>
+      <td class="right" style="background-color: {{ cell_color(row[header], aggregation_values) }}">{{ row[header] | number }}</td>
       {% endfor %}
       <th class="right">{{ row[headers[-1]] | number }}</th>
     </tr>
@@ -37,12 +37,12 @@
 <table class="pivot table">
   <tr style="height: 10px">
     {% for i in range(0,25) %}
-    <td style="background-color: {{ cell_color(i, 25, 0) }}"></td>
+    <td style="background-color: {{ cell_color(i, range(0,25)) }}"></td>
     {% endfor %}
   </tr>
   <tr>
-    <td colspan="13">(Min) {{ lower | number }}</td>
-    <td colspan="13" class="right">{{ upper | number }} (Max)</td>
+    <td colspan="13">(Min) {{ aggregation_values[0] | number }}</td>
+    <td colspan="13" class="right">{{ aggregation_values[-1] | number }} (Max)</td>
   </tr>
 </table>
 
