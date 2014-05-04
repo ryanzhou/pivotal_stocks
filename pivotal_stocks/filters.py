@@ -17,7 +17,14 @@ def number_filter(s):
 
 @app.template_filter('percent')
 def percent_filter(s):
-    if len(str(s)) > 0:
-        return "{:.2f}%".format(s)
+    if s == None or s == '':
+        return Markup('<span class="light">N/A</span>')
     else:
-        return ""
+        return "{:.2f}%".format(s)
+
+@app.template_filter('bin')
+def bin_filter(s):
+    if s != None and s[0] == "#":
+        return s[4:]
+    else:
+        return s

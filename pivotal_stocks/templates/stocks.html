@@ -12,6 +12,7 @@
     <th class="right">P/E Ratio</th>
     <th class="right">Dividend Yield</th>
     <th class="right">Franking %</th>
+    <th class="right">3-Year TSR</th>
   </thead>
   <tbody>
     {% for stock in stocks %}
@@ -23,6 +24,7 @@
       <td class="right">{{ stock['pe_ratio'] }}</td>
       <td class="right">{{ stock['div_yield'] | percent }}</td>
       <td class="right">{{ stock['franking'] | percent }}</td>
+      <td class="right">{{ stock['tsr_3y'] | percent }}</td>
     </tr>
     {% endfor %}
   </tbody>

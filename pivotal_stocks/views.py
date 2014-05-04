@@ -45,6 +45,7 @@ def pivot():
       ["Dividend Yield", "div_yield"],
       ["P/E Ratio", "pe_ratio"],
       ["Franking %", "franking"],
+      ["3-Year TSR %", "tsr_3y"],
       ["ASX200 Constituent", "asx200"]
     ]
     group_columns = [
@@ -52,6 +53,8 @@ def pivot():
       ["Market Cap (Bins)", "market_cap_bin"],
       ["Dividend Yield (Bins)", "div_yield_bin"],
       ["Franking % (Bins)", "franking_bin"],
+      ["EPS (Bins)", "eps_bin"],
+      ["3-Year TSR % (Bins)", "tsr_3y_bin"],
       ["ASX200 Constituent", "asx200"]
     ]
     filter_predicates = [
@@ -118,5 +121,4 @@ def pivot_table(c_label, r_label, a_function, a_field, f_field, f_predicate, f_v
     headers = list(map(lambda x: x[0], cursor.description))
     rows = cursor.fetchall()
     footers = pivot_table.footer_query()
-    sql = pivot_table.sql()
-    return render_template("pivot/table.html", headers=headers, rows=rows, footers=footers, sql=sql, human_name=pivot_table.human_name())
+    return render_template("pivot/table.html", pivot_table=pivot_table, headers=headers, rows=rows, footers=footers)

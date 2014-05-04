@@ -1,20 +1,23 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="page-header">
-  <h1>Pivot Table <small>{{ human_name | capitalize }}</small></h1>
-  <pre class="light">{{ sql }}</pre>
+  <h1>Pivot Table <small>{{ pivot_table.human_name() | capitalize }}</small></h1>
 </div>
-<table class="table table-bordered">
+<div class="toolbar">
+  <a href="{{ url_for('pivot_table', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-th"></span> Switch Row/Column</a>
+</div>
+<hr>
+<table class="pivot table table-bordered">
   <thead>
     <th></th>
     {% for header in headers[1:] %}
-    <th class="right">{{ header }}</th>
+    <th class="right">{{ header | bin }}</th>
     {% endfor %}
   </thead>
   <tbody>
     {% for row in rows %}
     <tr>
-      <th>{{ row[0] }}</th>
+      <th>{{ row[0] | bin }}</th>
       {% for header in headers[1:-1] %}
       <td class="right">{{ row[header] | number }}</td>
       {% endfor %}
@@ -30,4 +33,6 @@
     <th class="right">{{ footers["All"] | number }}</th>
   </tfoot>
 </table>
+<h2>SQL Query</h2>
+<pre class="light">{{ pivot_table.sql() }}</pre>
 {% endblock %}

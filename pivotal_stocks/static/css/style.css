@@ -19,3 +19,14 @@ h2 {
 .light {
   opacity: 0.5;
 }
+
+table.pivot {
+  font-size: 11px;
+}
+
+table.pivot th{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100px;
+}
