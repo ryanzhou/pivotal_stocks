@@ -46,6 +46,17 @@
   </tr>
 </table>
 
+<h4>Visualisations</h4>
+<div class="row">
+  <div class="col-sm-6">
+    <img src="{{ url_for('bar_chart', group_field=pivot_table.column_label, aggregation_function=pivot_table.aggregation_function, aggregation_field=pivot_table.aggregation_field) }}" style="width: 100%"></img>
+  </div>
+  <div class="col-sm-6">
+    <img src="{{ url_for('bar_chart', group_field=pivot_table.row_label, aggregation_function=pivot_table.aggregation_function, aggregation_field=pivot_table.aggregation_field) }}" style="width: 100%"></img>
+  </div>
+</div>
+
+
 <h4>SQL Query</h4>
 <pre class="light">{{ pivot_table.sql() }}</pre>
 {% endblock %}

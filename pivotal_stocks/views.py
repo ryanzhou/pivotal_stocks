@@ -1,6 +1,7 @@
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, make_response
 from pivotal_stocks import app, database, datasource
 from pivotal_stocks.pivot_table import PivotTable
+from pivotal_stocks.chart import Chart
 
 @app.route("/")
 def index():
@@ -123,3 +124,10 @@ def pivot_table(c_label, r_label, a_function, a_field, f_field, f_predicate, f_v
     aggregation_values = sorted([item for sublist in rows for item in list(sublist)[1:-1] if item is not None])
     footers = pivot_table.footer_query()
     return render_template("pivot/table.html", pivot_table=pivot_table, aggregation_values=aggregation_values, headers=headers, rows=rows, footers=footers)
+
+@app.route("/chart/bar/<group_field>/<aggregation_function>/<aggregation_field>.png")
+def bar_chart(group_field, aggregation_function, aggregation_field):
+    chart = Chart("stocks", group_field, aggregation_function, aggregation_field)
+    response = make_response(chart.bar_chart())
+    response.headers['Content-Type'] = 'image/png'
+    return response
