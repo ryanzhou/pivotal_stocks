@@ -11,7 +11,7 @@ def big_number_filter(s):
 @app.template_filter('number')
 def number_filter(s):
     if s == None:
-        return Markup('<span class="light">N/A</span>')
+        return Markup('<span class="light">-</span>')
     elif isinstance(s, int):
         return "{:,.0f}".format(s)
     else:
@@ -20,7 +20,7 @@ def number_filter(s):
 @app.template_filter('percent')
 def percent_filter(s):
     if s == None or s == '':
-        return Markup('<span class="light">N/A</span>')
+        return Markup('<span class="light">-</span>')
     else:
         return "{:.2f}%".format(s)
 
