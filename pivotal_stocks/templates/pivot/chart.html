@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="page-header">
+  <h1>Pivot Chart <small>{{ pivot_table.human_name() | capitalize }}</small></h1>
+</div>
+<div class="toolbar">
+  <a href="{{ url_for('pivot_chart', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-random"></span> Switch Row/Column</a>
+  <a href="{{ url_for('pivot_table', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-th"></span> Pivot Table</a>
+</div>
+<object data="{{ url_for('bar_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" type="image/svg+xml"></object>
+{% endblock %}

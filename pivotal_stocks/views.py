@@ -125,9 +125,15 @@ def pivot_table(c_label, r_label, a_function, a_field, f_field, f_predicate, f_v
     footers = pivot_table.footer_query()
     return render_template("pivot/table.html", pivot_table=pivot_table, aggregation_values=aggregation_values, headers=headers, rows=rows, footers=footers)
 
-@app.route("/chart/bar/<group_field>/<aggregation_function>/<aggregation_field>.png")
-def bar_chart(group_field, aggregation_function, aggregation_field):
-    chart = Chart("stocks", group_field, aggregation_function, aggregation_field)
+@app.route("/pivot/chart/<c_label>/<r_label>/<a_function>/<a_field>/<f_field>/<f_predicate>/<f_value>")
+def pivot_chart(c_label, r_label, a_function, a_field, f_field, f_predicate, f_value):
+    pivot_table = PivotTable("stocks", c_label, r_label, a_function, a_field, f_field, f_predicate, f_value)
+    return render_template("pivot/chart.html", pivot_table=pivot_table)
+
+@app.route("/chart/bar/<c_label>/<r_label>/<a_function>/<a_field>/<f_field>/<f_predicate>/<f_value>.svg")
+def bar_chart(c_label, r_label, a_function, a_field, f_field, f_predicate, f_value):
+    pivot_table = PivotTable("stocks", c_label, r_label, a_function, a_field, f_field, f_predicate, f_value)
+    chart = Chart(pivot_table)
     response = make_response(chart.bar_chart())
-    response.headers['Content-Type'] = 'image/png'
+    response.headers['Content-Type'] = 'image/svg+xml'
     return response
