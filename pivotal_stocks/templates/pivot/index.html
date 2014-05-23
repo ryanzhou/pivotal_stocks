@@ -1,85 +1,65 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="page-header">
-  <h1>Pivot Table Builder <small>Build your own or select from a number of presets</small></h1>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Custom Pivot Table</h3>
-      </div>
-      <div class="panel-body">
+<section class="content-6">
+  <div>
+    <div class="container">
+      <h3><img src="{{ url_for('static', filename='img/calc@2x.png') }}" width="100" height="100" alt=""> Pivot Table Builder </h3>
+      <p class="lead">Select from presets or build your own</p>
+      <div class="row features">
         <form action="{{ url_for('pivot_build') }}" method="post" class="form form-horizontal">
-          <div class="form-group">
-            <label for="filter_field" class="col-sm-2 control-label">Report Filter</label>
-            <div class="col-sm-4">
-              <select name="filter_field" class="form-control">
-                {% for column in data_columns %}
-                <option value="{{ column[1] }}">{{ column[0] }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="col-sm-2">
-              <select name="filter_predicate" class="form-control">
-                {% for predicate in filter_predicates %}
-                <option value="{{ predicate[1] }}">{{ predicate[0] }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="col-sm-3">
-              <input name="filter_value" class="form-control"></input>
-            </div>
+          <div class="col-sm-4 col-sm-offset-2">
+            <h6>Report Filter</h6>
+            <p><select name="filter_field" class="form-control">
+              {% for column in data_columns %}
+              <option value="{{ column[1] }}">{{ column[0] }}</option>
+              {% endfor %}
+            </select></p>
+            <p><select name="filter_predicate" class="form-control">
+              {% for predicate in filter_predicates %}
+              <option value="{{ predicate[1] }}">{{ predicate[0] }}</option>
+              {% endfor %}
+            </select></p>
+            <p><input name="filter_value" placeholder="Filter Value" class="form-control"></input></p>
           </div>
-          <div class="form-group">
-            <label for="column_label" class="col-sm-2 control-label">Column Label</label>
-            <div class="col-sm-4">
-              <select name="column_label" class="form-control">
-                {% for column in group_columns %}
-                <option value="{{ column[1] }}">{{ column[0] }}</option>
-                {% endfor %}
-              </select>
-            </div>
+          <div class="col-sm-4 col-sm-offset-1">
+            <h6>Row Label</h6>
+            <p><select name="row_label" class="form-control">
+              {% for column in group_columns %}
+              <option value="{{ column[1] }}">{{ column[0] }}</option>
+              {% endfor %}
+            </select></p>
           </div>
-          <div class="form-group">
-            <label for="row_label" class="col-sm-2 control-label">Row Label</label>
-            <div class="col-sm-4">
-              <select name="row_label" class="form-control">
-                {% for column in group_columns %}
-                <option value="{{ column[1] }}">{{ column[0] }}</option>
-                {% endfor %}
-              </select>
-            </div>
+        </div>
+        <div class="row features">
+          <div class="col-sm-4 col-sm-offset-2">
+            <h6>Column Label</h6>
+            <p><select name="column_label" class="form-control">
+              {% for column in group_columns %}
+              <option value="{{ column[1] }}">{{ column[0] }}</option>
+              {% endfor %}
+            </select></p>
           </div>
-          <div class="form-group">
-            <label for="aggregation_function" class="col-sm-2 control-label">Aggregation</label>
-            <div class="col-sm-4">
-              <select name="aggregation_function" class="form-control">
-                {% for function in aggregation_functions %}
-                <option value="{{ function[1] }}">{{ function[0] }} of</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="col-sm-4">
-              <select name="aggregation_field" class="form-control">
-                {% for column in data_columns %}
-                <option value="{{ column[1] }}">{{ column[0] }}</option>
-                {% endfor %}
-              </select>
-            </div>
+          <div class="col-sm-4 col-sm-offset-1">
+            <h6>Aggregation</h6>
+            <p><select name="aggregation_function" class="form-control">
+              {% for function in aggregation_functions %}
+              <option value="{{ function[1] }}">{{ function[0] }} of</option>
+              {% endfor %}
+            </select></p>
+            <p><select name="aggregation_field" class="form-control">
+              {% for column in data_columns %}
+              <option value="{{ column[1] }}">{{ column[0] }}</option>
+              {% endfor %}
+            </select></p>
           </div>
-          <hr>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <input type="submit" name="commit" class="btn btn-primary" value="Generate Pivot Table"></input>
-            </div>
+        </div>
+        <div class="row features">
+          <div class="col-sm-4 col-sm-offset-4">
+            <input type="submit" name="commit" class="btn btn-primary btn-large btn-block" value="Generate Pivot Table"></input>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
-
-</div>
-
-</div>
+</section>
 {% endblock %}

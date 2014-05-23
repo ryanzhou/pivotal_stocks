@@ -2,6 +2,83 @@
 {% block title %}Home - {{ super() }}{% endblock %}
 
 {% block content %}
+<section class="header-2-sub bg-midnight-blue">
+    <div class="background">&nbsp;</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="hero-unit">
+                    <h1>Exploring ASX securities data<br>
+                        has never been so easy and beautiful.</h1>
+                </div>
+                <div class="btns">
+                    <a class="btn btn-inverse" href="{{ url_for('stocks')}}">View Stocks</a>
+                    <a class="btn btn-danger" href="{{ url_for('pivot')}}">Pivot Table Builder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>1,900+ Listed Securities</h3>
+                <p>All ASX listed securities are dynamically fetched from external data sources and stored in the Pivotal Stocks database.</p>
+                <div class="row">
+                    <div class="col-sm-6 info">
+                        <h6>Pivot Tables</h6>
+                        Summarise data efficiently using the Pivot Table Builder.
+                    </div>
+                    <div class="col-sm-6 info">
+                        <h6>Pivot Charts</h6>
+                        Every Pivot Table can be graphed and visualised on Pivotal Stocks.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2 hidden-xs" style="padding-top: 50px">
+                <img src="{{ url_for('static', filename='img/Graph@2x.png') }}" width="200" height="200" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-9">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-1 hidden-xs" style="padding-top: 50px">
+              <img src="{{ url_for('static', filename='img/calc@2x.png') }}" width="200" height="200" alt="">
+          </div>
+            <div class="col-sm-6 col-sm-offset-1 ">
+                <h3>Advanced Data Analysis</h3>
+                <div class="row">
+                    <div class="col-sm-6 info">
+                        <h6>Filter</h6>
+                        Optionally use up to 10 predicates to filter a single data field.
+                    </div>
+                    <div class="col-sm-6 info">
+                        <h6>Row Label</h6>
+                        Select any data field (or bin) to construct the row headers.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 info">
+                        <h6>Column Label</h6>
+                        Select any data field (or bin) to construct the column headers.
+                    </div>
+                    <div class="col-sm-6 info">
+                        <h6>Aggregation</h6>
+                        Calculate the count, sum, average, minimum or maximum of aggregated field.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
 <h1>Hello world!</h1>
 <h2>Our Favourite Pivot Tables</h2>
 <ul>

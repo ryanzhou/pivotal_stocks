@@ -1,39 +1,46 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="page-header">
-  <h1>Pivot Table <small>{{ pivot_table.human_name() | capitalize }}</small></h1>
-</div>
-<div class="toolbar">
-  <a href="{{ url_for('pivot_table', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-random"></span> Switch Row/Column</a>
-  <a href="{{ url_for('pivot_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-stats"></span> Pivot Chart</a>
-</div>
-<hr>
-<table class="pivot table">
-  <thead>
-    <th></th>
-    {% for header in headers[1:] %}
-    <th class="right">{{ header | bin }}</th>
-    {% endfor %}
-  </thead>
-  <tbody>
-    {% for row in rows %}
-    <tr>
-      <th>{{ row[0] | bin }}</th>
-      {% for header in headers[1:-1] %}
-      <td class="right" style="background-color: {{ cell_color(row[header], aggregation_values) }}">{{ row[header] | number }}</td>
-      {% endfor %}
-      <th class="right">{{ row[headers[-1]] | number }}</th>
-    </tr>
-    {% endfor %}
-  </tbody>
-  <tfoot>
-    <th>All</th>
-    {% for header in headers[1:-1] %}
-    <th class="right">{{ footers[header] | number }}</th>
-    {% endfor %}
-    <th class="right">{{ footers["All"] | number }}</th>
-  </tfoot>
-</table>
+
+<section class="content-6">
+  <div>
+    <div class="container">
+      <h3><img src="{{ url_for('static', filename='img/Pensils@2x.png') }}" width="100" height="100" alt=""> Pivot Table </h3>
+      <p class="lead">{{ pivot_table.human_name() | capitalize }}</p>
+      <div class="toolbar">
+        <a href="{{ url_for('pivot_table', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-random"></span> Switch Row/Column</a>
+        <a href="{{ url_for('pivot_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-stats"></span> Pivot Chart</a>
+      </div>
+      <div class="row features">
+        <div class="col-sm-12">
+          <table class="pivot table">
+            <thead>
+              <th></th>
+              {% for header in headers[1:] %}
+              <th class="right">{{ header | bin }}</th>
+              {% endfor %}
+            </thead>
+            <tbody>
+              {% for row in rows %}
+              <tr>
+                <th>{{ row[0] | bin }}</th>
+                {% for header in headers[1:-1] %}
+                <td class="right" style="background-color: {{ cell_color(row[header], aggregation_values) }}">{{ row[header] | number }}</td>
+                {% endfor %}
+                <th class="right">{{ row[headers[-1]] | number }}</th>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <th>All</th>
+              {% for header in headers[1:-1] %}
+              <th class="right">{{ footers[header] | number }}</th>
+              {% endfor %}
+              <th class="right">{{ footers["All"] | number }}</th>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
 <h4>Colour Legend</h4>
 <table class="pivot table">
   <tr style="height: 10px">
@@ -49,4 +56,7 @@
 
 <h4>SQL Query</h4>
 <pre class="light">{{ pivot_table.sql() }}</pre>
+</div>
+</div>
+</section>
 {% endblock %}

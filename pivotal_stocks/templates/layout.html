@@ -2,59 +2,85 @@
 <html>
 <head>
   {% block head %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/flat-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-kit-header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-kit-footer.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-kit-content.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js')}}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/dataTables.bootstrap.js')}}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/Chart.min.js')}}" type="text/javascript"></script>
+
   <title>{% block title %}Pivotal Stocks{% endblock %}</title>
   {% endblock %}
 </head>
 <body>
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="{{ url_for('index') }}">Pivotal Stocks</a>
-      </div>
 
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('stocks') }}">Stocks</a></li>
-        <li><a href="{{ url_for('pivot')}}">Pivot Table</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('utilities') }}"><span class="glyphicon glyphicon-cog"></span> Utilities</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="flashes">
+  <header class="header-20">
     <div class="container">
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <div class="alert alert-success">
-        <h4>Success!</h4>
-        <ul>
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-      </ul></div>
-      {% endif %}
-      {% endwith %}
-      {% if error %}
-      <div class="alert alert-danger"><h4>Error</h4>{{ error }}</div>
-      {% endif %}
+        <div class="row">
+            <div class="navbar col-sm-12" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle"></button>
+                    <a class="brand" href="{{ url_for('index') }}">
+                       Pivotal Stocks
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse pull-right">
+                    <ul class="nav">
+                      <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+                      <li><a href="{{ url_for('stocks') }}">Stocks</a></li>
+                      <li><a href="{{ url_for('pivot')}}">Pivot Table</a></li>
+                      <li><a href="{{ url_for('utilities') }}"><span class="glyphicon glyphicon-cog"></span> Utilities</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="header-background"></div>
+</header>
+<div class="flashes">
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-success">
+      <h4>Success!</h4>
+      <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+    </ul></div>
+    {% endif %}
+    {% endwith %}
+    {% if error %}
+    <div class="alert alert-danger"><h4>Error</h4>{{ error }}</div>
+    {% endif %}
   </div>
+</div>
 
-  <div class="content">
+  {% block content %}{% endblock %}
+<footer class="footer-3">
     <div class="container">
-      {% block content %}{% endblock %}
+        <div class="row v-center">
+            <div class="col-sm-3">
+                <a class="brand" href="{{ url_for('index') }}">Pivotal Stocks</a>
+            </div>
+            <div class="col-sm-6">
+                <div class="additional-links">
+                    <p>Made by Ryan Zhou, Siyi Wu and Shuaiqi Li in 2014. </p>
+                    <p class="small">Disclaimer: Pivotal Stocks is not a commerical product. Any information in this web application does not constitute financial advice. Use at your own risk.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="address">
+                  A Project for
+              </div>
+                <h6>INFO20002 <br>Foundations of Informatics</h6>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="footer">
-    <div class="container">
-      <hr>
-      {% block footer %}
-      &copy; Copyright 2014 Ryan Zhou, Siyi Wu and Shuaiqi Li.
-      {% endblock %}
-    </div>
-  </div>
+</footer>
 </body>
 </html>

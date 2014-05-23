@@ -1,0 +1,98 @@
+.content-35 {
+    position: relative;
+    color: #7f8c8d;
+    padding-top: 140px;
+    padding-bottom: 145px;
+    > * {
+        position: relative;
+    }
+    h2 {
+        font-size: 35px;
+        line-height: 40px;
+        color: #2c3e50;
+        font-weight: 300;
+        margin: 0 0 45px;
+    }
+    .lead {
+        font-size: 20px;
+        line-height: 36px;
+        margin: 0 0 40px;
+    }
+    .btn {
+        font-weight: 500;
+        padding-left: 26px;
+        padding-right: 26px;
+        margin-bottom: 20px;
+        &.btn-inverse {
+            background: #2c3e50;
+        }
+    }
+    .columns {
+        margin-top: 60px;
+        h3 {
+            font-size: 20px;
+            color: #34495e;
+            line-height: 28px;
+            margin: 0 0 20px;
+            font-weight: 500;
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 26px;
+        }
+    }
+    .background {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .opacity(100);
+        > .container {
+            height: 100%;
+            @media (max-width: 767px) {
+                height: 250px;
+                margin-bottom: 60px;
+            }
+        }
+        .col-sm-4 {
+            position: absolute;
+            height: 100%;
+            > div {
+                position: absolute;
+                right: 0;
+                height: 100%;
+                width: 1000px;
+                background: #f3f3f3;
+                @media (max-width: 767px) {
+                    position: static;
+                    width: 100%;
+                    overflow: hidden;
+                }
+                img {
+                    height: 100%;
+                    width: auto;
+                    @media (max-width: 767px) {
+                        height: auto;
+                        min-height: 250px;
+                    }
+                }
+                margin: 0;
+                .background-size(cover);
+            }
+            @media (max-width: 767px) {
+                left: 0;
+                right: 0;
+                padding: 0;
+            }
+        }
+        @media (max-width: 767px) {
+            position: static;
+        }
+    }
+    @media (max-width: 767px) {
+        padding-top: 0;
+    }
+}

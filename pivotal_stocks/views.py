@@ -76,9 +76,7 @@ def pivot():
       ["Average", "avg"],
       ["Count", "count"],
       ["Minimum", "min"],
-      ["Maximum", "max"],
-      ["Standard Deviation", "stdev"],
-      ["Variance", "var"]
+      ["Maximum", "max"]
     ]
     return render_template("pivot/index.html", data_columns=data_columns, group_columns=group_columns, filter_predicates=filter_predicates, aggregation_functions=aggregation_functions)
 
