@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="content-6">
+  <div>
+    <div class="container">
+      <h3><img src="{{ url_for('static', filename='img/Bulb@2x.png') }}" width="100" height="100" alt=""> Observations </h3>
+      <p class="lead">Interesting facts about ASX stocks</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-2">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+              <h3>In the past 3 years, Telecommunication Services was the best performing sector.</h3>
+              <p>Within ASX 200, this sector achieved an average of 167.38% Total Shareholder Return in the last 3 years. There's also no ASX 200 company in this sector that delivered a negative earnings result in the last financial year.
+              </p>
+              <div class="btns">
+                  <a class="btn btn-primary" href="{{ url_for('pivot_table', c_label='sector', r_label='eps_bin', a_function='avg', a_field='tsr_3y', f_field='asx200', f_predicate='=', f_value='t') }}">View Pivot Table</a>
+              </div>
+          </div>
+            <div class="col-sm-6">
+                <div id="chart_1" style="width: 100%; height: 400px">Loading chart...</div>
+                <script src="{{ url_for('bar_chart', element_id='chart_1', c_label='sector', r_label='eps_bin', a_function='avg', a_field='tsr_3y', f_field='asx200', f_predicate='=', f_value='t') }}"></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>S&amp;P/ASX 200 index represents 80% of the entire ASX market</h3>
+                <p>ASX200 index constituents are the largest 200 ASX-listed companies in Australia by market capitalisation. Their combined valuation as of April 2014 was over $1.42 trillion!
+                </p>
+                <div class="btns">
+                    <a class="btn btn-primary" href="{{ url_for('pivot_table', c_label='market_cap_bin', r_label='asx200', a_function='sum', a_field='market_cap', f_field='any', f_predicate='any', f_value='any') }}">View Pivot Table</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="chart_2" style="width: 100%; height: 400px">Loading chart...</div>
+                <script src="{{ url_for('pie_chart', element_id='chart_2', c_label='market_cap_bin', r_label='asx200', a_function='sum', a_field='market_cap', f_field='any', f_predicate='any', f_value='any') }}"></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-2">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+              <h3>The highest-yield sectors are Utilities, followed by Consumer Staples and Financials.</h3>
+              <p>It's probably unsurprising that these industries are less cyclical than others. As their earnings are relatively stable, they can afford to pay more dividends to shareholders.
+              </p>
+              <div class="btns">
+                  <a class="btn btn-primary" href="{{ url_for('pivot_table', c_label='sector', r_label='franking_bin', a_function='avg', a_field='div_yield', f_field='asx200', f_predicate='=', f_value='t') }}">View Pivot Table</a>
+              </div>
+          </div>
+            <div class="col-sm-6">
+                <div id="chart_3" style="width: 100%; height: 400px">Loading chart...</div>
+                <script src="{{ url_for('bar_chart', element_id='chart_3', c_label='sector', r_label='franking_bin', a_function='avg', a_field='div_yield', f_field='asx200', f_predicate='=', f_value='t') }}"></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-2">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+              <h3>Materials dominates Small Cap, whereas Financials dominates Large Cap.</h3>
+              <p>664 out of 1,541 ASX small cap companies are in the Materials sector (uniquely Australian). By contrast, there are only 64 large cap companies with 20 being in the Financials sector.
+              </p>
+              <div class="btns">
+                  <a class="btn btn-primary" href="{{ url_for('pivot_table', c_label='sector', r_label='market_cap_bin', a_function='count', a_field='asx_code', f_field='any', f_predicate='any', f_value='any') }}">View Pivot Table</a>
+              </div>
+          </div>
+            <div class="col-sm-6">
+                <div id="chart_4" style="width: 100%; height: 400px">Loading chart...</div>
+                <script src="{{ url_for('pie_chart', element_id='chart_4', c_label='sector', r_label='market_cap_bin', a_function='count', a_field='asx_code', f_field='any', f_predicate='any', f_value='any') }}"></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-2">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+              <h3>There's a negative relationship between Dividend Yield and Total Shareholder Return.</h3>
+              <p>This is slightly counter-intuitive, but it's a fact that in the last 3 years, high-yield stocks weren't performing as well as low-yield stocks. Perhaps this can be explained by the recovering economy, in which "growth" stocks (usually low-yield) benefit the most.
+              </p>
+              <div class="btns">
+                  <a class="btn btn-primary" href="{{ url_for('pivot_table', c_label='div_yield_bin', r_label='eps_bin', a_function='avg', a_field='tsr_3y', f_field='any', f_predicate='any', f_value='any') }}">View Pivot Table</a>
+              </div>
+          </div>
+            <div class="col-sm-6">
+                <div id="chart_5" style="width: 100%; height: 400px">Loading chart...</div>
+                <script src="{{ url_for('bar_chart', element_id='chart_5', c_label='div_yield_bin', r_label='eps_bin', a_function='avg', a_field='tsr_3y', f_field='any', f_predicate='any', f_value='any') }}"></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-11">
+    <div class="container">
+        <span>Don't forget the Bubble Chart!</span>
+        <a class="btn btn-large btn-danger" href="{{ url_for('bubble') }}">Bubble Chart</a>
+    </div>
+</section>
+{% endblock %}

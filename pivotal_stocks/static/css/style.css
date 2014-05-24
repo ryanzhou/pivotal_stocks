@@ -37,3 +37,37 @@ table.pivot th{
   padding: 20px 0;
   text-align: center
 }
+
+.flashes .alert{
+  margin-top: 40px;
+}
+
+.header-2-sub {
+  padding-top: 130px;
+}
+
+.header-2-sub .hero-unit h1 {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.header-2-sub .background {
+  background: url("../img/hero-bg.jpg");
+  background-position: center;
+  opacity: 0.5;
+}
+
+.content-6 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.content-2 {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.content-9 {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}

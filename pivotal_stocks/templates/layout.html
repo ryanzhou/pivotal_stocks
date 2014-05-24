@@ -2,16 +2,9 @@
 <html>
 <head>
   {% block head %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/flat-ui.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-kit-header.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-kit-footer.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-kit-content.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js')}}" type="text/javascript"></script>
-  <script src="{{ url_for('static', filename='js/dataTables.bootstrap.js')}}" type="text/javascript"></script>
-  <script src="{{ url_for('static', filename='js/highcharts.min.js')}}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/vendor.min.js')}}" type="text/javascript"></script>
 
   <title>{% block title %}Pivotal Stocks{% endblock %}</title>
   {% endblock %}
@@ -30,10 +23,12 @@
                 </div>
                 <div class="navbar-collapse collapse pull-right">
                     <ul class="nav">
-                      <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-                      <li><a href="{{ url_for('stocks') }}">Stocks</a></li>
-                      <li><a href="{{ url_for('pivot')}}">Pivot Table</a></li>
-                      <li><a href="{{ url_for('utilities') }}"><span class="glyphicon glyphicon-cog"></span> Utilities</a></li>
+                      <li {% if request.path == "/" %}class="active"{% endif %}><a href="{{ url_for('index') }}">Home</a></li>
+                      <li {% if request.path == "/stocks" %}class="active"{% endif %}><a href="{{ url_for('stocks') }}">Stocks</a></li>
+                      <li {% if request.path.startswith("/pivot") %}class="active"{% endif %}><a href="{{ url_for('pivot')}}">Pivot Table</a></li>
+                      <li {% if request.path == "/bubble" %}class="active"{% endif %}><a href="{{ url_for('bubble')}}">Bubble Chart</a></li>
+                      <li {% if request.path == "/observations" %}class="active"{% endif %}><a href="{{ url_for('observations') }}">Observations</a></li>
+                      <li {% if request.path == "/utilities" %}class="active"{% endif %}><a href="{{ url_for('utilities') }}"><span class="glyphicon glyphicon-cog"></span> Utilities</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,7 +72,7 @@
               <div class="address">
                   A Project for
               </div>
-                <h6>INFO20002 <br>Foundations of Informatics</h6>
+                <h6><b>INFO20002</b> <br>Foundations of Informatics</h6>
             </div>
         </div>
     </div>

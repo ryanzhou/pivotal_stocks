@@ -70,3 +70,10 @@ def to_human_filter(s):
         except KeyError:
             words.append(word)
     return " ".join(words)
+
+@app.template_filter('pluralize')
+def pluralize_filter(s):
+    if s.endswith('y'):
+        return s[:-1] + "ies"
+    else:
+        return s + "s"

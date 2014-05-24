@@ -25,3 +25,12 @@ class Chart:
 
     def y_title(self):
         return "%s of %s" % (self.pivot_table.aggregation_function, self.pivot_table.aggregation_field)
+
+    def series_data(self):
+        return map(lambda row: { 'name': row[0], 'y': list(row)[-1], 'drilldown': row[0] } , self.rows)
+
+    def drilldown_series(self):
+        output = []
+        for row in self.rows:
+            output.append({ 'name': row[0], 'id': row[0], 'data': map(lambda h: [h, row[h]], self.headers[1:-1])})
+        return output

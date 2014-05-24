@@ -14,7 +14,6 @@ $(function () {
       categories: {{ chart.categories() | to_json }}
     },
     yAxis: {
-      min: 0,
       title: {
         text: '{{ chart.y_title() | to_human }}'
       }

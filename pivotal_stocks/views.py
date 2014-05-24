@@ -36,6 +36,14 @@ def stocks():
     stocks = database.query_db("select * from stocks order by market_cap desc;")
     return render_template("stocks.html", stocks=stocks)
 
+@app.route("/bubble")
+def bubble():
+    return render_template("bubble.html")
+
+@app.route("/observations")
+def observations():
+    return render_template("observations.html")
+
 @app.route("/pivot")
 def pivot():
     data_columns = [
@@ -72,9 +80,9 @@ def pivot():
       ["is False", "f"]
     ]
     aggregation_functions = [
+      ["Count", "count"],
       ["Sum", "sum"],
       ["Average", "avg"],
-      ["Count", "count"],
       ["Minimum", "min"],
       ["Maximum", "max"]
     ]
@@ -133,5 +141,26 @@ def bar_chart(element_id, c_label, r_label, a_function, a_field, f_field, f_pred
     pivot_table = PivotTable("stocks", c_label, r_label, a_function, a_field, f_field, f_predicate, f_value)
     chart = Chart(pivot_table)
     response = make_response(render_template('chart/bar.js', element_id=element_id, chart=chart))
+    response.headers['Content-Type'] = 'text/javascript'
+    return response
+
+@app.route("/chart/pie/<element_id>/<c_label>/<r_label>/<a_function>/<a_field>/<f_field>/<f_predicate>/<f_value>.js")
+def pie_chart(element_id, c_label, r_label, a_function, a_field, f_field, f_predicate, f_value):
+    pivot_table = PivotTable("stocks", c_label, r_label, a_function, a_field, f_field, f_predicate, f_value)
+    chart = Chart(pivot_table)
+    response = make_response(render_template('chart/pie.js', element_id=element_id, chart=chart))
+    response.headers['Content-Type'] = 'text/javascript'
+    return response
+
+@app.route("/chart/bubble/<element_id>.js")
+def bubble_chart(element_id):
+    stocks = database.query_db("select * from stocks where asx200 = 't';")
+    data = []
+    for stock in stocks:
+        if stock['pe_ratio'] != '':
+            div_yield = 0 if stock['div_yield'] == '' else stock['div_yield']
+            name = "%s (%s)" % (stock['company_name'], stock['asx_code'])
+            data.append({ 'name': name , 'x': div_yield, 'y': stock['pe_ratio'], 'z': stock['market_cap']})
+    response = make_response(render_template('chart/bubble.js', element_id=element_id, data=data))
     response.headers['Content-Type'] = 'text/javascript'
     return response

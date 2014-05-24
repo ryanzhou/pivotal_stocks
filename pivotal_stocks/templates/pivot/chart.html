@@ -10,10 +10,23 @@
         <a href="{{ url_for('pivot_table', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-th"></span> Pivot Table</a>
       </div>
       <div class="row features">
+        {% if pivot_table.aggregation_function in ["sum", "count"] %}
+        <div class="col-sm-6">
+          <div id="bar_chart" style="width:100%; height:500px;">Loading chart...</div>
+          <script src="{{ url_for('bar_chart', element_id='bar_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" type="text/javascript"></script>
+        </div>
+        <div class="col-sm-6">
+          <div id="pie_chart" style="width:100%; height:500px;">Loading chart...</div>
+          <script src="{{ url_for('pie_chart', element_id='pie_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" type="text/javascript"></script>
+        </div>
+        {% else %}
         <div class="col-sm-12">
           <div id="bar_chart" style="width:100%; height:600px;">Loading chart...</div>
           <script src="{{ url_for('bar_chart', element_id='bar_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" type="text/javascript"></script>
+          <h6>Where's the pie chart?</h6>
+          <p>Pie chart is not displayed because the aggregation function shouldn't be used for proportional analysis. </p>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>

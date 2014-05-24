@@ -8,12 +8,12 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="hero-unit">
-                    <h1>Exploring ASX securities data<br>
-                        has never been so easy and beautiful.</h1>
+                    <h1>Pivotal Stocks is making ASX data<br>
+                        simpler and more beautiful.</h1>
                 </div>
                 <div class="btns">
-                    <a class="btn btn-inverse" href="{{ url_for('stocks')}}">View Stocks</a>
-                    <a class="btn btn-danger" href="{{ url_for('pivot')}}">Pivot Table Builder</a>
+                    <a class="btn btn-info" href="{{ url_for('stocks')}}">View Stocks</a>
+                    <a class="btn btn-success" href="{{ url_for('pivot')}}">Pivot Table Builder</a>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <h3>1,900+ Listed Securities</h3>
-                <p>All ASX listed securities are dynamically fetched from external data sources and stored in the Pivotal Stocks database.</p>
+                <p>Data is dynamically fetched from external data sources and stored in the Pivotal Stocks database.</p>
                 <div class="row">
                     <div class="col-sm-6 info">
                         <h6>Pivot Tables</h6>
@@ -48,7 +48,7 @@
     <div class="container">
         <div class="row">
           <div class="col-sm-4 col-sm-offset-1 hidden-xs" style="padding-top: 50px">
-              <img src="{{ url_for('static', filename='img/calc@2x.png') }}" width="200" height="200" alt="">
+              <img src="{{ url_for('static', filename='img/Infinity-Loop@2x.png') }}" width="200" height="200" alt="">
           </div>
             <div class="col-sm-6 col-sm-offset-1 ">
                 <h3>Advanced Data Analysis</h3>
@@ -78,17 +78,59 @@
     </div>
 </section>
 
+<section class="content-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Lively Visualisations</h3>
+                <p>Every Pivot Table comes with 2-dimensional bar chart and pie chart, visualising all aggregation values in the table.</p>
+                <div class="row">
+                    <div class="col-sm-6 info">
+                        <h6>Interactive</h6>
+                        Mouseover any data point to see the exact values.
+                    </div>
+                    <div class="col-sm-6 info">
+                        <h6>Animated</h6>
+                        Pie charts have a gorgeous unique drilldown effect for viewing sub-slices.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2 hidden-xs" style="padding-top: 50px">
+                <img src="{{ url_for('static', filename='img/Map@2x.png') }}" width="200" height="200" alt="">
+            </div>
+        </div>
+    </div>
+</section>
 
-<h1>Hello world!</h1>
-<h2>Our Favourite Pivot Tables</h2>
-<ul>
-  <li><a href={{ url_for('pivot_table', c_label="sector", r_label="franking_bin", a_function="avg", a_field="div_yield", f_field="asx200", f_predicate="=", f_value="t")}}>Average Dividend Yields by Franking and Sector in ASX200</a></li>
-  <li><a href={{ url_for('pivot_table', c_label="sector", r_label="market_cap_bin", a_function="avg", a_field="pe_ratio", f_field="any", f_predicate="any", f_value="any")}}>Average P/E ratios by Sector and market cap</a></li>
-  <li><a href={{ url_for('pivot_table', c_label="market_cap_bin", r_label="asx200", a_function="sum", a_field="market_cap", f_field="any", f_predicate="any", f_value="any")}}>ASX200 Market Cap vs the rest</a></li>
-  <li><a href={{ url_for('pivot_table', c_label="tsr_3y_bin", r_label="eps_bin", a_function="count", a_field="asx_code", f_field="asx200", f_predicate="=", f_value="t")}}>The relationship of Earnings and Total Shareholder Return in ASX200</a></li>
-  <li><a href={{ url_for('pivot_table', c_label="sector", r_label="eps_bin", a_function="avg", a_field="tsr_3y", f_field="asx200", f_predicate="=", f_value="t")}}>Total Shareholder Return of various Sectors in ASX200</a></li>
-  <li><a href={{ url_for('pivot_table', c_label="div_yield_bin", r_label="tsr_3y_bin", a_function="count", a_field="asx_code", f_field="asx200", f_predicate="=", f_value="t")}}>Dividend Yield and Total Shareholder Return in ASX200</a></li>
-  <li><a href={{ url_for('pivot_table', c_label="sector", r_label="market_cap_bin", a_function="count", a_field="asx_code", f_field="any", f_predicate="any", f_value="any")}}>Sector and size distribution of ASX companies</a></li>
+<section class="content-9">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-1 hidden-xs" style="padding-top: 50px">
+              <img src="{{ url_for('static', filename='img/medal@2x.png') }}" width="200" height="200" alt="">
+          </div>
+            <div class="col-sm-6 col-sm-offset-1 ">
+                <h3>The Ultimate Chart</h3>
+                <p>Explore all ASX 200 companies in a single Bubble Chart with P/E ratio, Dividend Yield and Market Cap all included.</p>
+                <div class="row">
+                    <div class="col-sm-6 info">
+                        <h6>Zooming</h6>
+                        Select an area to zoom in to see more details.
+                    </div>
+                    <div class="col-sm-6 info">
+                        <h6>Try it now</h6>
+                        <a href="{{ url_for('bubble') }}" class="btn btn-default">Bubble Chart</a>
+                    </div>
+                </div>
+            </div>
 
-</ul>
+        </div>
+    </div>
+</section>
+
+<section class="content-11">
+    <div class="container">
+        <span>Need some ideas on how to use Pivotal Stocks?</span>
+        <a class="btn btn-large btn-danger" href="{{ url_for('observations') }}">Read our Observations</a>
+    </div>
+</section>
 {% endblock %}

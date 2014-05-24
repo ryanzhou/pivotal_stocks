@@ -4,7 +4,7 @@
   <div>
     <div class="container">
       <h3><img src="{{ url_for('static', filename='img/calc@2x.png') }}" width="100" height="100" alt=""> Pivot Table Builder </h3>
-      <p class="lead">Select from presets or build your own</p>
+      <p class="lead"><a href="{{ url_for('observations') }}">Select from presets</a> or build your own</p>
       <div class="row features">
         <form action="{{ url_for('pivot_build') }}" method="post" class="form form-horizontal">
           <div class="col-sm-4 col-sm-offset-2">
