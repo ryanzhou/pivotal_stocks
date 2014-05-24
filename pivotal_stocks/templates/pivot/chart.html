@@ -4,7 +4,7 @@
 <section class="content-6">
   <div>
     <div class="container">
-      <h3><img src="{{ url_for('static', filename='img/Pencil@2x.png') }}" width="100" height="100" alt=""> Pivot Chart </h3>
+      <h3><img src="{{ url_for('static', filename='img/pencil.png') }}" width="100" height="100" alt=""> Pivot Chart </h3>
       <div class="toolbar">
         <a href="{{ url_for('pivot_chart', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-random"></span> Switch Row/Column</a>
         <a href="{{ url_for('pivot_table', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-th"></span> Pivot Table</a>

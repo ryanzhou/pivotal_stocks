@@ -4,7 +4,7 @@
 <section class="content-6">
   <div>
     <div class="container">
-      <h3><img src="{{ url_for('static', filename='img/Pensils@2x.png') }}" width="100" height="100" alt=""> Pivot Table </h3>
+      <h3><img src="{{ url_for('static', filename='img/pencils.png') }}" width="100" height="100" alt=""> Pivot Table </h3>
       <p class="lead">{{ pivot_table.human_name() | to_human }}</p>
       <div class="toolbar">
         <a href="{{ url_for('pivot_table', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-random"></span> Switch Row/Column</a>
