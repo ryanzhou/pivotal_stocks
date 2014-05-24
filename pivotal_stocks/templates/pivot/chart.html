@@ -1,42 +1,18 @@
 {% extends 'layout.html' %}
 {% block content %}
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var data = {
-	labels : ["January","February","March","April","May","June","July"],
-	datasets : [
-		{
-			fillColor : "rgba(220,220,220,0.5)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			data : [65,59,90,81,56,55,40]
-		},
-		{
-			fillColor : "rgba(151,187,205,0.5)",
-			strokeColor : "rgba(151,187,205,1)",
-			pointColor : "rgba(151,187,205,1)",
-			pointStrokeColor : "#fff",
-			data : [28,48,40,19,96,27,100]
-		}
-	]
-}
-var ctx = document.getElementById("myChart").getContext("2d");
-var myNewChart = new Chart(ctx).Line(data, {});;
-</script>
 
 <section class="content-6">
   <div>
     <div class="container">
       <h3><img src="{{ url_for('static', filename='img/Pencil@2x.png') }}" width="100" height="100" alt=""> Pivot Chart </h3>
-      <p class="lead">{{ pivot_table.human_name() | capitalize }}</p>
       <div class="toolbar">
         <a href="{{ url_for('pivot_chart', c_label=pivot_table.row_label, r_label=pivot_table.column_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-random"></span> Switch Row/Column</a>
         <a href="{{ url_for('pivot_table', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" class="btn btn-default"><span class="glyphicon glyphicon-th"></span> Pivot Table</a>
       </div>
       <div class="row features">
         <div class="col-sm-12">
-          <object data="{{ url_for('bar_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" type="image/svg+xml"></object>
+          <div id="bar_chart" style="width:100%; height:600px;">Loading chart...</div>
+          <script src="{{ url_for('bar_chart', element_id='bar_chart', c_label=pivot_table.column_label, r_label=pivot_table.row_label, a_function=pivot_table.aggregation_function, a_field=pivot_table.aggregation_field, f_field=pivot_table.filter_field, f_predicate=pivot_table.filter_predicate, f_value=pivot_table.filter_value) }}" type="text/javascript"></script>
         </div>
       </div>
     </div>

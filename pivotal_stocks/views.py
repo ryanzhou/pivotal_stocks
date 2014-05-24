@@ -128,10 +128,10 @@ def pivot_chart(c_label, r_label, a_function, a_field, f_field, f_predicate, f_v
     pivot_table = PivotTable("stocks", c_label, r_label, a_function, a_field, f_field, f_predicate, f_value)
     return render_template("pivot/chart.html", pivot_table=pivot_table)
 
-@app.route("/chart/bar/<c_label>/<r_label>/<a_function>/<a_field>/<f_field>/<f_predicate>/<f_value>.svg")
-def bar_chart(c_label, r_label, a_function, a_field, f_field, f_predicate, f_value):
+@app.route("/chart/bar/<element_id>/<c_label>/<r_label>/<a_function>/<a_field>/<f_field>/<f_predicate>/<f_value>.js")
+def bar_chart(element_id, c_label, r_label, a_function, a_field, f_field, f_predicate, f_value):
     pivot_table = PivotTable("stocks", c_label, r_label, a_function, a_field, f_field, f_predicate, f_value)
     chart = Chart(pivot_table)
-    response = make_response(chart.bar_chart())
-    response.headers['Content-Type'] = 'image/svg+xml'
+    response = make_response(render_template('chart/bar.js', element_id=element_id, chart=chart))
+    response.headers['Content-Type'] = 'text/javascript'
     return response

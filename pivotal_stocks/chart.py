@@ -1,7 +1,5 @@
 from pivotal_stocks import database
 from pivotal_stocks.pivot_table import PivotTable
-import pygal
-from pygal.style import LightStyle
 
 class Chart:
     def __init__(self, pivot_table):
@@ -10,10 +8,20 @@ class Chart:
         self.headers = list(map(lambda x: x[0], cursor.description))
         self.rows = cursor.fetchall()
 
-    def bar_chart(self):
-        chart = pygal.Bar(style=LightStyle)
-        chart.title = self.pivot_table.human_name()
-        chart.x_labels = self.headers[1:-1]
+    def categories(self):
+        return self.headers[1:]
+
+    def series(self):
+        output = []
         for row in self.rows:
-            chart.add(row[0], list(row)[1:-1])
-        return chart.render()
+            output.append({
+                'name': row[0],
+                'data': list(row)[1:-1]
+            })
+        return output
+
+    def title(self):
+        return self.pivot_table.human_name()
+
+    def y_title(self):
+        return "%s of %s" % (self.pivot_table.aggregation_function, self.pivot_table.aggregation_field)
