@@ -163,16 +163,15 @@ def pie_chart(element_id, c_label, r_label, a_function, a_field, f_field, f_pred
 
 @app.route("/chart/bubble/<element_id>.js")
 def bubble_chart(element_id):
-    stocks = database.query_db("select * from stocks where asx200 = 't'")
     sectors = database.query_db("select distinct sector from stocks where asx200 = 't' order by sector asc")
     series = []
     for sector in sectors:
         data = []
-        stocks = database.query_db("select * from stocks where asx200 = 't' and sector = ? and pe_ratio is not null", (sector[0], ))
+        stocks = database.query_db("select * from stocks where sector = ? and pe_ratio is not null and pe_ratio != ''", (sector[0],))
         for stock in stocks:
-            div_yield = 0 if stock['div_yield'] == '' else stock['div_yield']
+            div_yield = 0 if stock['div_yield'] in [None, ''] else stock['div_yield']
             name = "%s (%s)" % (stock['company_name'], stock['asx_code'])
-            data.append({ 'name': name , 'x': div_yield, 'y': stock['pe_ratio'], 'z': stock['market_cap']})
+            data.append({ 'name': name , 'y': div_yield, 'x': stock['pe_ratio'], 'z': stock['market_cap']})
         series.append({ 'name': sector[0], 'data': data })
     response = make_response(render_template('chart/bubble.js', element_id=element_id, series=series))
     response.headers['Content-Type'] = 'text/javascript'

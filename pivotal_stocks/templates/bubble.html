@@ -4,7 +4,8 @@
   <div>
     <div class="container">
       <h3><img src="{{ url_for('static', filename='img/flask.png') }}" width="100" height="100" alt=""> Bubble Chart </h3>
-      <p class="lead">All S&amp;P/ASX200 Stocks</p>
+      <p class="lead">All ASX Stocks <small style="font-size: 16px;">(with P/E and Dividend Yield in reasonable range)</small></p>
+      <p style="text-align: center">ProTip: Use mouse to select an area to zoom in.</p>
       <div id="bubble_chart" style="margin-top: 50px; width:100%; height:600px;">Loading chart...</div>
       <script src="{{ url_for('bubble_chart', element_id='bubble_chart') }}" type="text/javascript"></script>
     </div>
