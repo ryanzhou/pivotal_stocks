@@ -23,12 +23,9 @@ $(function () {
       },
       tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}"><b>{point.name}</b></span><br>P/E: {point.y:f}<br>Dividend Yield: {point.x:f}%<br>Market Cap: {point.z}<br/>'
+        pointFormat: '<span style="color:{point.color}"><b>{point.name}</b></span><br>P/E Ratio: {point.y:f}<br>Dividend Yield: {point.x:f}%<br>Market Cap: ${point.z},000<br/>'
       },
-	    series: [{
-          name: 'Stock',
-	        data: {{ data | to_json }}
-	    }]
+	    series: {{ series | to_json }}
 	});
 
 });
