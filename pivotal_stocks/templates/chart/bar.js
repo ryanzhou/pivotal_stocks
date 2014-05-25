@@ -1,7 +1,10 @@
 $(function () {
   $('#{{ element_id }}').highcharts({
     chart: {
-      type: 'column'
+      type: 'column',
+      style: {
+          fontFamily: 'Helvetica, Arial, sans-serif'
+      }
     },
     credits: false,
     title: {

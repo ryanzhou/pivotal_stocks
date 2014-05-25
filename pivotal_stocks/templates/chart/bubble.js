@@ -3,8 +3,12 @@ $(function () {
 
 	    chart: {
 	        type: 'bubble',
-	        zoomType: 'xy'
+	        zoomType: 'xy',
+          style: {
+              fontFamily: 'Helvetica, Arial, sans-serif'
+          },
 	    },
+
       credits: false,
 	    title: {
 	    	text: ''

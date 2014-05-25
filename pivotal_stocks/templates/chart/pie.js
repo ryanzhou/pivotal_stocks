@@ -1,7 +1,10 @@
 $(function () {
   $('#{{ element_id }}').highcharts({
     chart: {
-      type: 'pie'
+      type: 'pie',
+      style: {
+          fontFamily: 'Helvetica, Arial, sans-serif'
+      }
     },
     credits: false,
     title: {
@@ -18,7 +21,6 @@ $(function () {
         showInLegend: true
       }
     },
-
     tooltip: {
       headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
       pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:f}</b><br/>'

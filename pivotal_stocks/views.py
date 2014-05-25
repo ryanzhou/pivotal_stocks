@@ -94,9 +94,11 @@ def pivot_build():
     if (request.form['aggregation_function'] in ['avg', 'min', 'max']
     and request.form['aggregation_field'] not in ['market_cap', 'div_yield', 'pe_ratio', 'franking', 'tsr_3y']) \
     or (request.form['aggregation_function'] in ['sum']
-    and request.form['aggregation_field'] not in ['market_cap']) \
-    or (request.form['column_label'] == request.form['row_label']):
+    and request.form['aggregation_field'] not in ['market_cap']):
         flash("The combination of aggregation function and aggregation field is not meaningful.")
+        return redirect(url_for('pivot'))
+    if request.form['column_label'] == request.form['row_label']:
+        flash("Row label and column label should not be the same.")
         return redirect(url_for('pivot'))
     # Now redirect to the permalink of Pivot Table
     if request.form['filter_predicate'] in ['any']:
