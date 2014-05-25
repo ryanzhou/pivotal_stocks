@@ -40,8 +40,8 @@
   <div class="container">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <div class="alert alert-success">
-      <h4>Success!</h4>
+    <div class="alert alert-warning">
+      <h4>Message</h4>
       <ul>
     {% for message in messages %}
     <li>{{ message }}</li>

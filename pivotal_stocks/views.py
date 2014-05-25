@@ -90,6 +90,15 @@ def pivot():
 
 @app.route("/pivot/build", methods=['POST'])
 def pivot_build():
+    # Meaningfulness detection
+    if (request.form['aggregation_function'] in ['avg', 'min', 'max']
+    and request.form['aggregation_field'] not in ['market_cap', 'div_yield', 'pe_ratio', 'franking', 'tsr_3y']) \
+    or (request.form['aggregation_function'] in ['sum']
+    and request.form['aggregation_field'] not in ['market_cap']) \
+    or (request.form['column_label'] == request.form['row_label']):
+        flash("The combination of aggregation function and aggregation field is not meaningful.")
+        return redirect(url_for('pivot'))
+    # Now redirect to the permalink of Pivot Table
     if request.form['filter_predicate'] in ['any']:
         return redirect(url_for('pivot_table',
           c_label=request.form['column_label'],
